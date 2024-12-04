@@ -1,0 +1,38 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    text-align: center;
+}
+
+table, td, tr, th {
+    padding: 0.5em;
+    border: 1px solid;
+    border-collapse: collapse;
+}
+
+#order {
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    overflow-y: scroll;
+}
+
+#edit > form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
