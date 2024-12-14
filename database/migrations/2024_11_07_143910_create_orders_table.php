@@ -14,11 +14,12 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             // "name", "date_acc", "date_clr", "type", "price", "qty", "total"
             $table->id();
-            $table->string('name');
+            $table->bigInteger('customer_id')->unsigned();
+            $table->bigInteger('laundry_type_id')->unsigned();
+            $table->foreign('customer_id')->references('id')->on('customers');
             $table->date('date_acc');
             $table->date('date_clr');
-            $table->string('type');
-            $table->integer('price');
+            $table->foreign('laundry_type_id')->references('id')->on('laundry_types');
             $table->integer('qty');
             $table->integer('total');
         });

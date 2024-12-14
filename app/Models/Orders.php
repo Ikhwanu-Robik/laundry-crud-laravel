@@ -13,5 +13,5 @@ class Orders extends Model
 
     public $timestamps = false;
 
-    protected $fillable = ["name", "date_acc", "date_clr", "type", "price", "qty", "total"];
+    protected $fillable = ["customer_id", "laundry_type_id", "date_acc", "date_clr", "qty", "total"];
 }

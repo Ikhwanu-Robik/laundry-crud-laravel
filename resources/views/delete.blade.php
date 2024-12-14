@@ -27,10 +27,10 @@
                     @foreach ($orders as $order)
                         <tr>
                             <td>{{ $order['id'] }}</td>
-                            <td>{{ $order['name'] }}</td>
+                            <td>{{ $order['customer_name'] }}</td>
                             <td>{{ $order['date_acc'] }}</td>
                             <td>{{ $order['date_clr'] }}</td>
-                            <td>{{ $order['type'] }}</td>
+                            <td>{{ $order['laundry_type_name'] }}</td>
                             <td>{{ $order['price'] }}</td>
                             <td>{{ $order['qty'] }}</td>
                             <td>{{ $order['total'] }}</td>

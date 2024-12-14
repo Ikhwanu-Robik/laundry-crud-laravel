@@ -94,7 +94,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
   A place declaring all tables that will be used along with the details of the table's columns. Located at "database\migrations".
 
-  - **create_orders_table** : "id", "name" (of the customer), "date_acc" (when is the order placed), "date_clr" (when the order will be fulfilled), "type" (of the laundry), "price", "qty" (quantity), "total".
+  - **create_orders_table** : "id", "customer_id", "laundry_type_id", "date_acc" (when is the order placed), "date_clr" (when the order will be fulfilled), "qty" (quantity), "total".
   - **create_laundry_types_table** : "id", "name", "price".
   - **create_customers_table** : "id", "name".
 

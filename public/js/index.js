@@ -32,7 +32,7 @@ qtyInput.addEventListener("input", setTotalValue);
 let typesInput = document.getElementById("types");
 function adjustPrice() {
     laundryTypes.forEach(type => {
-        if (type["name"] == typesInput.value) {
+        if (type["id"] == typesInput.value) {
             priceInput.value = type["price"];
         }
     });

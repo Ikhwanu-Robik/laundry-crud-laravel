@@ -23,10 +23,9 @@ class UpdateOrder extends FormRequest
     {
         return [
             "id" => "required",
-            "name" => "required",
-            "type" => "required",
+            "customer_id" => "required",
+            "laundry_type_id" => "required",
             "date_acc" => "required",
-            "price" => "required",
             "qty" => "required",
             "total" => "required"
         ];
@@ -35,10 +34,9 @@ class UpdateOrder extends FormRequest
     public function messages():array {
         return [
             'id.required' => 'id wajib diisi',
-            'name.required' => 'nama wajib diisi',
-            'type.required' => 'jenis laundry wajib diisi',
+            'customer_id.required' => 'nama wajib diisi',
+            'laundry_type_id.required' => 'jenis laundry wajib diisi',
             'date_acc.required' => 'tanggal diterima wajib diisi',
-            'price.required' => 'harga wajib diisi',
             'qty.required' => 'jumlah wajib diisi',
             'total.required' => 'total wajib diisi',
         ];

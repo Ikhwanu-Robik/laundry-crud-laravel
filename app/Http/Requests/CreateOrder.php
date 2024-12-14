@@ -22,9 +22,8 @@ class CreateOrder extends FormRequest
     public function rules(): array
     {
         return [
-            "name" => "required",
-            "type" => "required",
-            "price" => "required",
+            "customer_id" => "required",
+            "laundry_type_id" => "required",
             "qty" => "required",
             "total" => "required"
         ];
@@ -32,9 +31,8 @@ class CreateOrder extends FormRequest
 
     public function messages(): array {
         return [
-            'name.required' => 'nama wajib diisi',
-            'type.required' => 'jenis laundry wajib diisi',
-            'price.required' => 'harga wajib diisi',
+            'customer_id.required' => 'nama wajib diisi',
+            'laundry_type_id.required' => 'jenis laundry wajib diisi',
             'qty.required' => 'jumlah wajib diisi',
             'total.required' => 'total wajib diisi',
         ];

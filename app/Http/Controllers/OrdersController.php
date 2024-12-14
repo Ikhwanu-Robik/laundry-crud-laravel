@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UpdateOrder;
 use App\Models\Orders;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateOrder;
+use App\Http\Requests\UpdateOrder;
+use App\Http\Controllers\CustomersController;
+use App\Http\Controllers\LaundryTypeController;
 
 class OrdersController extends Controller
 {
@@ -16,7 +18,24 @@ class OrdersController extends Controller
     {
         $orders = Orders::all();
 
-        return $orders;
+        $new_orders = [];
+
+        foreach ($orders as $order) {
+            $array_order = [
+                'id' => $order->id,
+                'customer_name' => CustomersController::findById($order->customer_id)->name,
+                'laundry_type_name' => LaundryTypeController::findById($order->laundry_type_id)->name,
+                'date_acc' => $order->date_acc,
+                'date_clr' => $order->date_clr,
+                'price' => LaundryTypeController::findById($order->laundry_type_id)->price,
+                'qty' => $order->qty,
+                'total' => LaundryTypeController::findById($order->laundry_type_id)->price * $order->qty
+            ];
+
+            array_push($new_orders,  $array_order);
+        }
+
+        return $new_orders;
     }
 
     /**
@@ -27,11 +46,10 @@ class OrdersController extends Controller
         $validated = $request->validated();
 
         $order = Orders::create([
-            "name" => $validated["name"],
+            "customer_id" => $validated["customer_id"],
+            "laundry_type_id" => $validated["laundry_type_id"],
             "date_acc" => date("Y-m-d"),
             "date_clr" => date("Y-m-d", time() + 3 * 24 * 60 * 60),
-            "type" => $validated["type"],
-            "price" => $validated["price"],
             "qty" => $validated["qty"],
             "total" => $validated["total"]
         ]);
@@ -53,11 +71,10 @@ class OrdersController extends Controller
 
         $order = Orders::find($validated["id"]);
 
-        $order->name = $validated["name"];
-        $order->type = $validated["type"];
+        $order->customer_id = $validated["customer_id"];
+        $order->laundry_type_id = $validated["laundry_type_id"];
         $order->date_acc = $validated["date_acc"];
         $order->date_clr = $date_clr;
-        $order->price = $validated["price"];
         $order->qty = $validated["qty"];
         $order->total = $validated["total"];
 

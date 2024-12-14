@@ -61,3 +61,5 @@ Route::post("/actions/update", [OrdersController::class, "update"]);
 Route::delete("/actions/delete/{order_id}", [OrdersController::class, "destroy"])->name("orders.destroy");
 
 Route::get("/laundry-types", [LaundryTypeController::class, "index"]);
+
+Route::get('/order', [OrdersController::class, "index"]);
