@@ -5,6 +5,14 @@ body {
     align-items: center;
 }
 
+#error {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    color: red;
+    font-size: 30px;
+}
+
 main {
     text-align: center;
 }

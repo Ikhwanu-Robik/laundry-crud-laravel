@@ -63,20 +63,20 @@
                     <input type="date" name="date_acc" id="date_acc">
                 </div>
                 <div class="input-group">
-                    <label for="jenis">jenis</label>
-                    <select name="type" id="jenis" onchange="adjustPrice()" onfocus="this.selectedIndex = -1;">
+                    <label for="types">jenis</label>
+                    <select name="type" id="types" onchange="adjustPrice()" onfocus="this.selectedIndex = -1;">
                         @foreach ($types as $type)
                             <option value="{{ $type['name'] }}">{{ $type['name'] }}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="input-group">
-                    <label for="harga">harga</label>
-                    <input type="number" name="price" id="harga" readonly>
+                    <label for="price">harga</label>
+                    <input type="number" name="price" id="price" readonly>
                 </div>
                 <div class="input-group">
-                    <label for="jumlah">jumlah</label>
-                    <input type="number" name="qty" id="jumlah">
+                    <label for="qty">jumlah</label>
+                    <input type="number" name="qty" id="qty">
                 </div>
                 <div class="input-group">
                     <label for="total">total</label>

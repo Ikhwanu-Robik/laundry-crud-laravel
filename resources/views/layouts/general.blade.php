@@ -9,6 +9,13 @@
 </head>
 
 <body>
+    @if ($errors->any())
+        <div id="error">
+            @foreach ($errors->all() as $error)
+                {{ $error }} </br>
+            @endforeach
+        </div>
+    @endif
     @yield('content')
 </body>
 

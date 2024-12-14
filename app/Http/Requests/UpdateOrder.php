@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateOrder extends FormRequest
+class UpdateOrder extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,18 +22,22 @@ class CreateOrder extends FormRequest
     public function rules(): array
     {
         return [
+            "id" => "required",
             "name" => "required",
             "type" => "required",
+            "date_acc" => "required",
             "price" => "required",
             "qty" => "required",
             "total" => "required"
         ];
     }
 
-    public function messages(): array {
+    public function messages():array {
         return [
+            'id.required' => 'id wajib diisi',
             'name.required' => 'nama wajib diisi',
             'type.required' => 'jenis laundry wajib diisi',
+            'date_acc.required' => 'tanggal diterima wajib diisi',
             'price.required' => 'harga wajib diisi',
             'qty.required' => 'jumlah wajib diisi',
             'total.required' => 'total wajib diisi',

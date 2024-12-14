@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MasterController;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\CustomersController;
 use App\Http\Controllers\LaundryTypeController;
@@ -46,13 +45,9 @@ Route::get("/update", function () {
 })->name("update");
 
 Route::get("/delete", function () {
-    $customers = CustomersController::index();
-    $types = LaundryTypeController::index();
     $orders = OrdersController::index();
 
     $param = [
-        "customers" => $customers,
-        "types" => $types,
         "orders" => $orders
     ];
 
@@ -63,6 +58,6 @@ Route::post('/actions/create', [OrdersController::class, "store"]);
 
 Route::post("/actions/update", [OrdersController::class, "update"]);
 
-Route::delete("/actions/delete/{order}", [OrdersController::class, "destroy"])->name("orders.destroy");
+Route::delete("/actions/delete/{order_id}", [OrdersController::class, "destroy"])->name("orders.destroy");
 
 Route::get("/laundry-types", [LaundryTypeController::class, "index"]);

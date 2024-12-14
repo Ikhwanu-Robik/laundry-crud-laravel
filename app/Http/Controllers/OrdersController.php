@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateOrder;
 use App\Models\Orders;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateOrder;
@@ -16,14 +17,6 @@ class OrdersController extends Controller
         $orders = Orders::all();
 
         return $orders;
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -47,38 +40,14 @@ class OrdersController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(Orders $orders)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Orders $orders)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
 
     //I need to make CreateOrder or Order object when inserting/updating a field
 
-    public function update(CreateOrder $request, Orders $orders)
+    public function update(UpdateOrder $request, Orders $orders)
     {
-        $validated = $request->validate([
-            "id" => "required",
-            "name" => "required",
-            "type" => "required",
-            "date_acc" => "required",
-            "price" => "required",
-            "qty" => "required",
-            "total" => "required"
-        ]);
+        $validated = $request->validated();
 
         $date_clr = date("Y-m-d", strtotime($validated["date_acc"]) + 3 * 24 * 60 * 60);
 

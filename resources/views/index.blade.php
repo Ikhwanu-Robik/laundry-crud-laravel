@@ -58,16 +58,16 @@
                         <option value={{ $customer['name'] }}>{{ $customer['name'] }}</option>
                     @endforeach
                 </select>
-                <label for="jenis">Jenis</label>
-                <select name="type" id="jenis" onchange="adjustPrice()" onfocus="this.selectedIndex = -1;">
+                <label for="types">Jenis</label>
+                <select name="type" id="types" onchange="adjustPrice()" onfocus="this.selectedIndex = -1;">
                     @foreach ($types as $type)
                         <option value="{{ $type['name'] }}">{{ $type['name'] }}</option>
                     @endforeach
                 </select>
-                <label for="harga">Harga</label>
-                <input type="number" name="price" id="harga" readonly>
-                <label for="jumlah">Jumlah</label>
-                <input type="number" name="qty" id="jumlah">
+                <label for="price">Harga</label>
+                <input type="number" name="price" id="price" readonly>
+                <label for="qty">Jumlah</label>
+                <input type="number" name="qty" id="qty">
                 <label for="total">Total</label>
                 <input type="number" name="total" id="total" readonly>
                 <input type="submit" value="Tambah">

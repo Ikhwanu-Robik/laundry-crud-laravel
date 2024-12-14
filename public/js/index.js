@@ -1,7 +1,25 @@
-let totalInput = document.getElementById("total");
-let priceInput = document.getElementById("harga");
-let qtyInput = document.getElementById("jumlah");
+let laundryTypes;
+const typesURL = window.location.origin + "/laundry-types";
+async function getLaundryTypes() {
+    try {
+        const response = await fetch(typesURL);
+        if (!response.ok) {
+            throw new Error("Error " + response.status);
+        }
 
+        laundryTypes = await response.json();
+    } catch (error) {
+        console.error(error.message);
+    }
+}
+
+getLaundryTypes();
+
+let totalInput = document.getElementById("total");
+let priceInput = document.getElementById("price");
+let qtyInput = document.getElementById("qty");
+
+//set the default value for price number field
 priceInput.value = 5000;
 
 function setTotalValue() {
@@ -11,26 +29,9 @@ function setTotalValue() {
 priceInput.addEventListener("input", setTotalValue);
 qtyInput.addEventListener("input", setTotalValue);
 
-let json;
-const typesURL = window.location.origin + "/laundry-types";
-async function getLaundryTypes() {
-    try {
-        const response = await fetch(typesURL);
-        if (!response.ok) {
-            throw new Error("Error " + response.status);
-        }
-
-        json = await response.json();
-    } catch (error) {
-        console.error(error.message);
-    }
-}
-
-getLaundryTypes();
-
-let typesInput = document.getElementById("jenis");
+let typesInput = document.getElementById("types");
 function adjustPrice() {
-    json.forEach(type => {
+    laundryTypes.forEach(type => {
         if (type["name"] == typesInput.value) {
             priceInput.value = type["price"];
         }
@@ -38,5 +39,3 @@ function adjustPrice() {
 
     setTotalValue();
 }
-
-

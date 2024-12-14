@@ -64,3 +64,66 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## LAUNDRY CRUD
+
+  ## CONTROLLERS
+
+  User-defined controllers residing at ".\App\Http\Controllers".
+
+  - **CustomersController** : it only has one function that returns all rows from **customers** table.
+  - **LaundryTypeController** : it only has one function that returns all rows from **laundry_type** table.
+  - **OrdersController** : it is a full fledged CRUD controller interacting with **orders** table.
+
+  ## REQUESTS
+
+  Classes extending from the **Request** class, providing extra functionalities to object sent by HTTP request. It resides at ".\App\Http\Requests".
+
+  - **CreateOrder** : is a class for handling request sent through "/actions/create" route, it provides input validation and custom error message for invalid input.
+  - **UpdateOrder** : is a class for handling request sent through "/actions/update" route, it provides input validation and custom error message for invalid input.
+
+  ## MODELS
+
+  Interfaces to communicate with the database. Each model represent a table in the database, and inside each model are rules of what can and can't be asked from the table. It resides at "app\Http\Models"
+
+  - **Customer** : connect with **customers** table, unmodified.
+  - **LaundryTypes** : connect with **laundry_types** table, unmodified.
+  - **Orders** : connect with **orders** table, it allows some columns to be fillable.
+
+  ## MIGRATIONS
+
+  A place declaring all tables that will be used along with the details of the table's columns. Located at "database\migrations".
+
+  - **create_orders_table** : "id", "name" (of the customer), "date_acc" (when is the order placed), "date_clr" (when the order will be fulfilled), "type" (of the laundry), "price", "qty" (quantity), "total".
+  - **create_laundry_types_table** : "id", "name", "price".
+  - **create_customers_table** : "id", "name".
+
+  ## JAVASCRIPT FUNCTIONS
+
+  - **setTotalValue** : (no parameter) (no return) set the value of "#total" with the value of "#price" multiplied by the value of "#qty".
+  - **getLaundryTypes** : (no parameter) (no return) fetch all records from **laundry_types** table to be used dynamic modification of some input elements.
+  - **adjustPrice** : (no parameter) (no return) change the value of "#price" when "#types" value is changed in accordance to the price in **laundry_types** table by calling the **setTotalValue** function.
+
+  ## VIEWS
+
+  - **index** : needs data from 
+    - **orders** table acquired from **OrdersController**
+    - **customers** table acquired from **CustomersController**
+    - **laundry_types** table acquired from **LaundryTypesController**
+  - **update** : needs data from
+    - **orders** table acquired from **OrdersController**
+    - **customers** table acquired from **CustomersController**
+    - **laundry_types** table acquired from **LaundryTypesController**
+  - **delete** : needs data from
+    - **orders** table acquired from **OrdersController**
+  - **layouts.general** : optionally can display error from "$errors" that might be thrown by "validated()" function inside **OrdersController**
+
+  ## ROUTES
+
+  - **GET /** : call "index()" from **OrdersController**, **CustomersController**, **LaundryTypesController** and use the returned data as a parameter for **index** view.
+  - **GET /update** : call "index()" from **OrdersController**, **CustomersController**, **LaundryTypesController** and use the returned data as a parameter for **update** view.
+  - **GET /delete** : call "index()" from **OrdersController** and use the returned data as a parameter for **update** view.
+  - **POST /actions/create** : calling the "store()" function from **OrdersController**.
+  - **POST /actions/update** : calling the "update()" function from **OrdersController**.
+  - **DELETE /actions/delete/{order_id}** : calling the "destroy()" function from **OrdersController**.
+  - **GET /laundry-types** : returns all records from **laundry_types** table in raw json.
